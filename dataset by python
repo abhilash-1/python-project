@@ -1,0 +1,126 @@
+8/1/2021 movie_dataset - Jupyter Notebook
+localhost:8889/notebooks/Downloads/movie_dataset.ipynb# 1/4 Movie DataSet
+In [24]: 
+In [26]:  6. Find total number of movies in dataset
+In [27]:  5. Find the list of years and number of movies released each year.
+Out[26]:
+[['1', 'The Nightmare Before Christmas', '1993', '3.9', '4568'],
+['2', 'The Mummy', '1932', '3.5', '4388'],
+['3', 'Orphans of the Storm', '1921', '3.2', '9062'],
+['4', 'The Object of Beauty', '1991', '2.8', '6150'],
+['5', 'Night Tide', '1963', '2.8', '5126']]
+49590
+from csv import reader
+with open('movie.txt') as m:
+ movie = reader(m)
+ movie = list(movie)
+for i in range(5):
+ print(movie[i])
+movie[:5]
+print(len(movie))
+8/1/2021 movie_dataset - Jupyter Notebook
+localhost:8889/notebooks/Downloads/movie_dataset.ipynb# 2/4
+In [30]:  4. Find the number of movies with duration more than 2 hours (7200 second).
+In [38]: 
+In [44]:  3. Find the movies whose rating are between 3 and 4.
+{1993: 564, 1932: 4, 1921: 2, 1991: 364, 1963: 88, 1985: 334, 1994: 517, 192
+9: 5, 1995: 592, 1919: 3, 1996: 688, 1915: 1, 1978: 231, 1971: 131, 1935: 1
+1, 1981: 112, 1989: 421, 1987: 280, 1986: 287, 1972: 166, 1992: 479, 1938:
+5, 1990: 470, 1999: 1181, 1976: 118, 1973: 168, 1979: 140, 1975: 134, 1920:
+6, 1982: 153, 1950: 10, 1970: 141, 1968: 173, 1939: 6, 1988: 334, 1974: 178,
+1980: 107, 1959: 87, 1956: 60, 1952: 15, 1923: 4, 1969: 124, 1964: 126, 194
+7: 9, 1984: 303, 1925: 5, 1936: 7, 1997: 788, 1998: 843, 1927: 4, 1983: 270,
+1924: 5, 1928: 2, 1937: 4, 1977: 136, 1953: 17, 1916: 1, 1960: 123, 1926: 2,
+1941: 7, 1949: 9, 1931: 3, 1955: 14, 1940: 9, 2000: 902, 1962: 124, 1966: 10
+3, 2001: 1173, 1942: 3, 1967: 279, 1954: 17, 1914: 20, 1958: 73, 1951: 33, 1
+945: 9, 1965: 104, 1944: 10, 1934: 8, 1933: 7, 1948: 13, 1957: 98, 2002: 111
+7, 2003: 1399, 1961: 119, 2004: 1381, 1946: 6, 2005: 1937, 1922: 2, 1930: 5,
+2010: 5107, 2011: 5511, 1943: 7, 2006: 2416, 2007: 2892, 2008: 3358, 2009: 4
+451, 2013: 981, 2012: 4339, 1913: 3, 1918: 1, 2014: 1}
+1040
+True
+False
+movie_dict = {}
+for i in movie:
+ year = int(i[2])
+ 
+ if year in movie_dict:
+ movie_dict[year] += 1
+ else:
+ movie_dict[year] = 1
+ 
+print(movie_dict) 
+count = 0
+for i in movie:
+ duration = i[4]
+ if duration > '7200':
+ count += 1
+print(count) 
+# Testing 
+print('7200' > '7190')
+print('7199'> '7200')
+8/1/2021 movie_dataset - Jupyter Notebook
+localhost:8889/notebooks/Downloads/movie_dataset.ipynb# 3/4
+In [63]: 
+In [55]:  2. Find the number of movies having rating more than 4.
+In [64]:  1. Find the number of movies released between 1950
+Out[63]:
+{'The Nightmare Before Christmas': '3.9',
+'The Mummy': '3.5',
+'Orphans of the Storm': '3.2',
+'One Magic Christmas': '3.8',
+"Muriel's Wedding": '3.5',
+"Mother's Boys": '3.4',
+'Nosferatu: Original Version': '3.5',
+'Nick of Time': '3.4',
+'Broken Blossoms': '3.3',
+'Big Night': '3.6',
+'The Boys from Brazil': '3.6',
+'The Bride of Frankenstein': '3.7',
+'Beautiful Girls': '3.5',
+"Bustin' Loose": '3.7',
+'The Beguiled': '3.4',
+'Born on the Fourth of July': '3.4',
+'Broadcast News': '3.4',
+Out[55]:
+False
+Out[64]:
+897
+movie_rating_between_3_and_4 = {}
+for i in movie:
+ rating = i[3]
+ if (rating > '3.0') and (rating < '4.0'):
+# print(i[1]+' : '+i[3])
+ movie_rating_between_3_and_4[i[1]] = rating
+movie_rating_between_3_and_4 
+# Testing 
+'3.0' > '3.0'
+movie_count = 0
+for i in movie:
+ rating = i[3]
+ if rating > '4.0':
+ movie_count += 1
+movie_count 
+8/1/2021 movie_dataset - Jupyter Notebook
+localhost:8889/notebooks/Downloads/movie_dataset.ipynb# 4/4 d t e u be o o es e eased bet ee 950 and 1960.
+In [66]: 
+In [87]: 
+In [ ]: 
+Out[66]:
+414
+Out[87]:
+414
+# string comparision
+movie_year_count = 0
+for i in movie:
+ year = i[2]
+ if (year>'1950') and (year < '1960'):
+ movie_year_count += 1
+movie_year_count 
+# integer comparision
+movie_year_count = 0
+for i in movie:
+ year = int(i[2])
+ if (year>1950) and (year < 1960):
+ movie_year_count += 1
+movie_year_count 
